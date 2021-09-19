@@ -23,7 +23,7 @@ h1{
   text-transform: uppercase;
 }
 
-input{
+#task{
   width: 100%;
   padding: 20px;
   text-align: center;
@@ -34,7 +34,7 @@ input{
   font-style: italic;
 }
 
-input::placeholder{
+#task::placeholder{
       color: grey;
          font-size: 18px;
 }
@@ -42,12 +42,13 @@ input::placeholder{
   display: flex;
   justify-content: space-between;
 }
-button{
+.add-task{
   min-width: 72px;
   height: 72px;
   background-color: rgb(30, 172, 214);
   color: #ffffff;
   border: none;
+  font-size: 30px;
 }
 
 .task-box{
@@ -70,11 +71,50 @@ button{
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color:rgb(194, 193, 193 ) ;
   border: 1px solid rgb(163, 162, 162);
 }
 
 .task_ready{
  text-decoration: line-through;
 }
+.icon-pencil {
+  border: none;
+}
+.icon-close {
+  border: none;
+}
 
+.state{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 22px;
+}
+.rate {
+  display:inline-flex;
+  width: 300px;
+
+  border: 1px solid grey;
+}
+.rate_state{
+  display: inline-block;
+  width: 50%;
+  background-color: yellow;
+  text-align:start;
+}
+.delete-task {
+  display: inline-flex;
+  padding:  20px;
+  margin-bottom: 10px;
+  background-color: rgb(30, 172, 214);
+  color: #ffffff;
+ 
+  border: none;
+}
+.delete-task span{
+     font-size: 18px;
+     line-height: 30px;
+ }
+.delete-task svg{
+  margin-left: 10px;
+}
