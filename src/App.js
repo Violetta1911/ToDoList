@@ -1,13 +1,10 @@
 import './App.scss';
+import Header from './components/Header';
 
 function App() {
 	return (
 		<div className='wrapper'>
-			<h1>todolist</h1>
-			<div className='add-task-box'>
-				<input type='text' name='task' id='task' placeholder='add new task' />
-				<button className='add-task'>+</button>
-			</div>
+			<Header />
 			<ul className='task-box'>
 				<li className='task'>
 					<div className='check-box'>
