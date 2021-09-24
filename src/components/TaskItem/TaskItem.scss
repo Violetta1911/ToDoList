@@ -1,0 +1,23 @@
+$blue: rgb(30, 172, 214);
+$white: #ffffff;
+
+.actions {
+	display: flex;
+	flex-direction: row;
+}
+
+.check {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid rgb(163, 162, 162);
+}
+.task_ready {
+	text-decoration: line-through;
+}
+
+label {
+	span {
+		padding-left: 20px;
+	}
+}

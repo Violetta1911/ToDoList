@@ -1,0 +1,21 @@
+$blue: rgb(30, 172, 214);
+$white: #ffffff;
+
+.delete-task {
+	display: inline-flex;
+	padding: 20px;
+	margin-bottom: 10px;
+	background-color: $blue;
+	color: $white;
+	border: none;
+
+	span {
+		font-size: 18px;
+		line-height: 30px;
+	}
+
+	svg {
+		margin-left: 10px;
+		cursor: pointer;
+	}
+}

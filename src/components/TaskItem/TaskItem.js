@@ -1,15 +1,16 @@
 import React from 'react';
-import ButtonClose from './ButtonClose';
-import ButtonEdit from './ButtonEdit';
+import ButtonClose from '../ButtoClose/ButtonClose';
+import ButtonEdit from '../ButtonEdit/ButtonEdit';
+import './TaskItem.scss';
 
 const TaskItem = () => {
 	return (
 		<div>
 			<li className='task'>
-				<div className='check-box'>
-					<input type='checkbox' className='check' />
+				<label className='check-box'>
+					<input type='checkbox' className='check' placeholder='read book' />
 					<span> read book</span>
-				</div>
+				</label>
 
 				<div className='actions'>
 					<ButtonEdit />

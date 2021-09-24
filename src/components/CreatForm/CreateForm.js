@@ -1,5 +1,6 @@
 import React from 'react';
-import TaskItem from './TaskItem';
+import TaskItem from '../TaskItem/TaskItem';
+import './CreateForm.scss';
 
 const CreateForm = (task) => {
 	return (

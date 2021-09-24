@@ -1,5 +1,6 @@
 import React from 'react';
-import Title from './Title';
+import Title from '../Title/Title';
+import './Header.scss';
 
 const Header = () => {
 	return (

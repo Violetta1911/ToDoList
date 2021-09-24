@@ -1,4 +1,5 @@
 import React from 'react';
+import './ButtonEdit.scss';
 
 const ButtonEdit = () => {
 	return (

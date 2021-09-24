@@ -1,5 +1,6 @@
 import React from 'react';
-import ButtonRemove from './ButtonRemove';
+import ButtonRemove from '../ButtonRemove/ButtonRemove';
+import './ProgressBar.scss';
 
 const ProgressBar = () => {
 	return (
