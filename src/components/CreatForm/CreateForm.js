@@ -1,14 +1,8 @@
 import React from 'react';
-import TaskItem from '../TaskItem/TaskItem';
 import './CreateForm.scss';
 
-const CreateForm = (task) => {
-	return (
-		<ul className='task-box'>
-			<TaskItem className='task' />
-			<TaskItem className='task' />
-		</ul>
-	);
+const CreateForm = (props) => {
+	return <form className='task-box'>{props.createTask}</form>;
 };
 
 export default CreateForm;
