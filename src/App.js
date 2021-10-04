@@ -1,27 +1,27 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
-import CreateForm from './components/CreatForm/CreateForm';
-import ProgressBar from './components/ProgressBar/ProgressBar';
+import TaskCreationForm from './components/TaskCreationForm/TaskCreationForm';
+import Footer from './components/Footer/Footer';
 import TaskItem from './components/TaskItem/TaskItem';
 
 class App extends React.Component {
 	render() {
 		const data = [
-			{ id: 1, task: 'read book' },
-			{ id: 2, task: 'learn React' },
-			{ id: 3, task: `buy humster's food` },
+			{ id: 1, task: 'read book', status: true },
+			{ id: 2, task: 'learn React', status: true },
+			{ id: 3, task: `buy humster's food`, status: true },
 		];
 
-		const createTask = data.map((task) => {
+		const showTask = data.map((task) => {
 			return <TaskItem key={task.id} datas={task} />;
 		});
 
 		return (
 			<div className='wrapper'>
 				<Header />
-				<CreateForm createTask={createTask} />
-				<ProgressBar />
+				<TaskCreationForm showTask={showTask} />
+				<Footer />
 			</div>
 		);
 	}

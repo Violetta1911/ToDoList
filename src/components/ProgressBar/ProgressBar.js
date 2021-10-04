@@ -1,16 +1,12 @@
 import React from 'react';
-import ButtonRemove from '../ButtonRemove/ButtonRemove';
 import './ProgressBar.scss';
 
 const ProgressBar = () => {
 	return (
-		<div className='state'>
-			<div className='progress'>
-				<div className='bar'>
-					<span>1 of 2 tasks done</span>
-				</div>
+		<div className='progress'>
+			<div className='bar'>
+				<span>1 of 2 tasks done</span>
 			</div>
-			<ButtonRemove />
 		</div>
 	);
 };
