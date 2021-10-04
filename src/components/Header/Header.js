@@ -1,15 +1,13 @@
 import React from 'react';
+import TaskCreation from '../TaskCreation/TaskCreation';
 import Title from '../Title/Title';
 import './Header.scss';
 
-const Header = () => {
+const Header = ({ createTask }) => {
 	return (
 		<div>
 			<Title />
-			<div className='add-task-box'>
-				<input type='text' name='task' id='task' placeholder='add new task' />
-				<button className='add-task'>+</button>
-			</div>
+			<TaskCreation />
 		</div>
 	);
 };

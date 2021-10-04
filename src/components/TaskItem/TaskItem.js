@@ -26,7 +26,7 @@ const TaskItem = (props) => {
 		</svg>
 	);
 	return (
-		<div className='task'>
+		<li className='task'>
 			<label className='check-box'>
 				<input type='checkbox' className='check' />
 				<span>{props.datas.task}</span>
@@ -36,7 +36,7 @@ const TaskItem = (props) => {
 				<Button className='icon-pencil' title={edit} />
 				<Button className='icon-close' title={close} />
 			</div>
-		</div>
+		</li>
 	);
 };
 

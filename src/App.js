@@ -1,28 +1,31 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
-import TaskCreationForm from './components/TaskCreationForm/TaskCreationForm';
+import TaskList from './components/TaskList/TaskList';
 import Footer from './components/Footer/Footer';
 import TaskItem from './components/TaskItem/TaskItem';
 
 class App extends React.Component {
 	render() {
 		const data = [
-			{ id: 1, task: 'read book', status: true },
-			{ id: 2, task: 'learn React', status: true },
-			{ id: 3, task: `buy humster's food`, status: true },
+			{ id: 1, task: 'read book', isDone: false },
+			{ id: 2, task: 'learn React', isDone: false },
+			{ id: 3, task: `buy humster's food`, isDone: true },
 		];
 
-		const showTask = data.map((task) => {
-			return <TaskItem key={task.id} datas={task} />;
+		const renderTask = data.map((task) => {
+			return !task.isDone ? <TaskItem key={task.id} datas={task} /> : null;
 		});
 
+		const createTask = () => {
+			console.log('Hello!');
+		};
 		return (
-			<div className='wrapper'>
-				<Header />
-				<TaskCreationForm showTask={showTask} />
+			<form className='wrapper'>
+				<Header createTask={createTask} />
+				<TaskList renderTask={renderTask} />
 				<Footer />
-			</div>
+			</form>
 		);
 	}
 }
