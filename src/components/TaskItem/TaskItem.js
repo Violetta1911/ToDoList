@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../Button/Button';
 import './TaskItem.scss';
 
-const TaskItem = (props) => {
+const TaskItem = ({ task }) => {
 	let close = (
 		<svg
 			version='1.1'
@@ -29,7 +29,7 @@ const TaskItem = (props) => {
 		<li className='task'>
 			<label className='check-box'>
 				<input type='checkbox' className='check' />
-				<span>{props.datas.task}</span>
+				<span>{task}</span>
 			</label>
 
 			<div className='actions'>

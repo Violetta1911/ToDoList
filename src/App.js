@@ -6,24 +6,39 @@ import Footer from './components/Footer/Footer';
 import TaskItem from './components/TaskItem/TaskItem';
 
 class App extends React.Component {
-	render() {
-		const data = [
-			{ id: 1, task: 'read book', isDone: false },
-			{ id: 2, task: 'learn React', isDone: false },
-			{ id: 3, task: `buy humster's food`, isDone: true },
-		];
+	constructor(props) {
+		super(props);
+		this.handleChange = this.handleChange.bind(this);
+		this.addTask = this.addTask.bind(this);
+		this.renderTask = this.renderTask.bind(this);
+		this.state = { tasks: {}, value: '' };
+	}
+	handleChange(e) {
+		this.setState({ value: e.target.value });
+	}
 
-		const renderTask = data.map((task) => {
-			return !task.isDone ? <TaskItem key={task.id} datas={task} /> : null;
+	renderTask() {
+		this.state.tasks.map((task) => {
+			return <TaskItem key={task.id} task={task.title} />;
 		});
-
-		const createTask = () => {
-			console.log('Hello!');
+	}
+	addTask() {
+		//1.делаем копию объекта state
+		const tasks = { ...this.state.tasks };
+		//2.добавляем новый task в переменную task
+		tasks[`task${Date.now()}`] = {
+			title: this.state.value,
+			isDone: false,
+			id: Date.now(),
 		};
+		//3.записать обновленный tasks в state
+		this.setState({ tasks });
+	}
+	render() {
 		return (
 			<form className='wrapper'>
-				<Header createTask={createTask} />
-				<TaskList renderTask={renderTask} />
+				<Header handleChange={this.handleChange} addTask={this.addTask} />
+				<TaskList render={this.renderTask} />
 				<Footer />
 			</form>
 		);
