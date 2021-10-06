@@ -9,7 +9,7 @@ const TaskCreation = (props) => {
 				name='task'
 				id='task'
 				placeholder='add new task'
-				onChange={props.handleChange}
+				onChange={props.readTask}
 			/>
 			<button className='add-task' onClick={props.addTask}>
 				+

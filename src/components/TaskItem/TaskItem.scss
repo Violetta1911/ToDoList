@@ -21,3 +21,14 @@ label {
 		padding-left: 20px;
 	}
 }
+.task {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	color: $blue;
+	border-top: 1px solid rgb(194, 193, 193);
+	border-bottom: 1px solid rgb(194, 193, 193);
+	align-items: center;
+	font-size: 24px;
+	line-height: 20px;
+}
