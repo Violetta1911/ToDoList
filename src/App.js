@@ -5,32 +5,28 @@ import TaskList from './components/TaskList/TaskList';
 import Footer from './components/Footer/Footer';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { tasks: {}, value: '' };
-		this.readTask = this.readTask.bind(this);
-		this.addTask = this.addTask.bind(this);
-	}
-	readTask(e) {
-		this.setState({ value: e.target.value });
-	}
+	state = { tasks: [], newTaskItem: '' };
 
-	addTask(event) {
+	readTask = (event) => {
+		this.setState({ newTaskItem: event.target.value });
+	};
+
+	addTask = (event) => {
 		event.preventDefault();
+
 		//1.делаем копию объекта state
 		const tasks = { ...this.state.tasks };
 		//2.добавляем новый task в переменную task
-		if (this.state.value != '') {
+		if (this.state.newTaskItem !== '') {
 			tasks[`task${Date.now()}`] = {
-				title: this.state.value,
+				title: this.state.newTaskItem,
 				isDone: false,
 				id: Date.now(),
 			};
 		}
 		//3.записать обновленный tasks в state
 		this.setState({ tasks });
-		event.preventDefault();
-	}
+	};
 	render() {
 		return (
 			<form className='wrapper'>

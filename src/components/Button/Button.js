@@ -2,11 +2,7 @@ import React from 'react';
 import './Button.scss';
 
 const Button = (props) => {
-	return (
-		<div>
-			<button className={props.className}>{props.title}</button>
-		</div>
-	);
+	return <button className={props.className}>{props.children}</button>;
 };
 
 export default Button;
