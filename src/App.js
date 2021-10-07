@@ -7,31 +7,43 @@ import Footer from './components/Footer/Footer';
 class App extends React.Component {
 	state = { tasks: [], newTaskItem: '' };
 
-	readTask = (event) => {
+	onChangeTask = (event) => {
 		this.setState({ newTaskItem: event.target.value });
 	};
 
-	addTask = (event) => {
+	onRemoveTask = (index) => {
+		const taskList = this.state.tasks.splice(index, 1);
+		this.setState({ tasks: taskList });
+	};
+
+	onCorrectTask = (event) => {
+		console.log('hi');
+	};
+
+	onAddTask = (event) => {
 		event.preventDefault();
 
-		//1.делаем копию объекта state
-		const tasks = { ...this.state.tasks };
-		//2.добавляем новый task в переменную task
-		if (this.state.newTaskItem !== '') {
-			tasks[`task${Date.now()}`] = {
-				title: this.state.newTaskItem,
-				isDone: false,
-				id: Date.now(),
-			};
-		}
-		//3.записать обновленный tasks в state
-		this.setState({ tasks });
+		this.setState((prevState) => ({
+			tasks: [
+				...prevState.tasks,
+				{ id: Date.now(), title: this.state.newTaskItem, isDone: false },
+			],
+		}));
+		this.setState({ newTaskItem: '' });
 	};
 	render() {
 		return (
 			<form className='wrapper'>
-				<Header readTask={this.readTask} addTask={this.addTask} />
-				<TaskList tasks={this.state.tasks} />
+				<Header
+					onChangeTask={this.onChangeTask}
+					onAddTask={this.onAddTask}
+					newTaskItem={this.state.newTaskItem}
+				/>
+				<TaskList
+					tasks={this.state.tasks}
+					onRemoveTask={this.onRemoveTask}
+					onCorrectTask={this.onCorrectTask}
+				/>
 				<Footer />
 			</form>
 		);

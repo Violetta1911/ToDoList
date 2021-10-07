@@ -6,12 +6,14 @@ class TaskList extends React.Component {
 	render() {
 		return (
 			<ul className='task-box'>
-				{Object.keys(this.props.tasks).map((key) => {
+				{this.props.tasks.map((task, key) => {
 					return (
 						<TaskItem
 							key={key}
 							index={key}
-							task={this.props.tasks[key].title}
+							task={task.title}
+							onRemoveTask={() => this.props.onRemoveTask(key)}
+							onCorrectTask={() => this.props.onCorrectTask(key)}
 						/>
 					);
 				})}
