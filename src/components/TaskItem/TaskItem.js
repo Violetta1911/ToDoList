@@ -4,19 +4,20 @@ import './TaskItem.scss';
 
 const TaskItem = (props) => {
 	const [taskTitle, setTaskTitle] = useState('taskTitle');
+	const onChecked = () => {
+		if (taskTitle === 'taskTitle') {
+			setTaskTitle('taskTitleCross');
+			props.onCheckedTask();
+		} else {
+			setTaskTitle('taskTitle');
+			props.onNotCheckedTask();
+		}
+	};
 
 	return (
 		<li className='task'>
 			<label className='check-box'>
-				<input
-					type='checkbox'
-					className='check'
-					onChange={() =>
-						taskTitle === 'taskTitle'
-							? setTaskTitle('taskTitleCross')
-							: setTaskTitle('taskTitle')
-					}
-				/>
+				<input type='checkbox' className='check' onChange={onChecked} />
 			</label>
 
 			<input
@@ -27,12 +28,7 @@ const TaskItem = (props) => {
 			/>
 
 			<div className='actions'>
-				<Button
-					className='icon-pencil'
-					onClick={(event) => {
-						event.preventDefault();
-						setTaskTitle('taskTitleChange');
-					}}>
+				<Button className='icon-pencil' onClick={props.onChangeTask}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='22'

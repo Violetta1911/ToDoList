@@ -7,7 +7,7 @@ const Footer = ({ onRemoveTasks }) => {
 	return (
 		<footer className='state'>
 			<ProgressBar />
-			<Button className='delete-task' onClick={onRemoveTasks}>
+			<Button className='delete-task' onClick={(event) => onRemoveTasks(event)}>
 				<div className='buttonText'>
 					<span>Remove Task</span>
 					<svg

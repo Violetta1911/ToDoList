@@ -11,15 +11,35 @@ const App = () => {
 	const onChangeTask = (event) => {
 		setNewTaskItem(event.target.value);
 	};
+	function onCheckedTask(key) {
+		const checkedTasks = tasks.map((item) => {
+			if (item.id === key) {
+				return (item = { ...item, isDone: true });
+			} else {
+				return item;
+			}
+		});
+		setTasks(checkedTasks);
+	}
+	function onNotCheckedTask(key) {
+		const checkedTasks = tasks.map((item) => {
+			if (item.id === key) {
+				return (item = { ...item, isDone: false });
+			} else {
+				return item;
+			}
+		});
+		setTasks(checkedTasks);
+	}
 
 	const onRemoveTask = (key, event) => {
 		event.preventDefault();
 		const taskList = tasks.filter((task) => task.id !== key);
 		setTasks(taskList);
 	};
-	const onRemoveTasks = (key, event) => {
+	const onRemoveTasks = (event) => {
 		event.preventDefault();
-		const taskList = tasks.filter((task) => task.id !== key);
+		const taskList = tasks.filter((task) => task.isDone !== true);
 		setTasks(taskList);
 	};
 
@@ -41,7 +61,13 @@ const App = () => {
 				onAddTask={onAddTask}
 				newTaskItem={newTaskItem}
 			/>
-			<TaskList tasks={tasks} onRemoveTask={onRemoveTask} />
+			<TaskList
+				tasks={tasks}
+				onCheckedTask={onCheckedTask}
+				onNotCheckedTask={onNotCheckedTask}
+				onChangeTask={onChangeTask}
+				onRemoveTask={onRemoveTask}
+			/>
 			<Footer onRemoveTasks={onRemoveTasks} />
 		</form>
 	);
