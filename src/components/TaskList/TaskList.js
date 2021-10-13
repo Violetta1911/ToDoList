@@ -12,8 +12,7 @@ class TaskList extends React.Component {
 							key={key}
 							index={key}
 							task={task.title}
-							onRemoveTask={() => this.props.onRemoveTask(key)}
-							onCorrectTask={() => this.props.onCorrectTask(key)}
+							onRemoveTask={(event) => this.props.onRemoveTask(task.id, event)}
 						/>
 					);
 				})}

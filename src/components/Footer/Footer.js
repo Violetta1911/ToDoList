@@ -3,11 +3,11 @@ import './Footer.scss';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import Button from '../Button/Button';
 
-const Footer = () => {
+const Footer = ({ onRemoveTasks }) => {
 	return (
 		<footer className='state'>
 			<ProgressBar />
-			<Button className='delete-task'>
+			<Button className='delete-task' onClick={onRemoveTasks}>
 				<div className='buttonText'>
 					<span>Remove Task</span>
 					<svg

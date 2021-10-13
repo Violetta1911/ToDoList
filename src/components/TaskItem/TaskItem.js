@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import './TaskItem.scss';
 
 const TaskItem = (props) => {
+	const [taskTitle, setTaskTitle] = useState('taskTitle');
+
 	return (
 		<li className='task'>
 			<label className='check-box'>
-				<input type='checkbox' className='check' />
-				<span>{props.task}</span>
+				<input
+					type='checkbox'
+					className='check'
+					onChange={() =>
+						taskTitle === 'taskTitle'
+							? setTaskTitle('taskTitleCross')
+							: setTaskTitle('taskTitle')
+					}
+				/>
 			</label>
 
+			<input
+				type='text'
+				id='newtask'
+				className={taskTitle}
+				value={props.task}
+			/>
+
 			<div className='actions'>
-				<Button className='icon-pencil' onClick={props.onCorrectTask}>
+				<Button
+					className='icon-pencil'
+					onClick={(event) => {
+						event.preventDefault();
+						setTaskTitle('taskTitleChange');
+					}}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='22'

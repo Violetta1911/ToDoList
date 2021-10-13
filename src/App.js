@@ -1,53 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import TaskList from './components/TaskList/TaskList';
 import Footer from './components/Footer/Footer';
 
-class App extends React.Component {
-	state = { tasks: [], newTaskItem: '' };
+const App = () => {
+	const [tasks, setTasks] = useState([]);
+	const [newTaskItem, setNewTaskItem] = useState('');
 
-	onChangeTask = (event) => {
-		this.setState({ newTaskItem: event.target.value });
+	const onChangeTask = (event) => {
+		setNewTaskItem(event.target.value);
 	};
 
-	onRemoveTask = (index) => {
-		const taskList = this.state.tasks.splice(index, 1);
-		this.setState({ tasks: taskList });
-	};
-
-	onCorrectTask = (event) => {
-		console.log('hi');
-	};
-
-	onAddTask = (event) => {
+	const onRemoveTask = (key, event) => {
 		event.preventDefault();
-
-		this.setState((prevState) => ({
-			tasks: [
-				...prevState.tasks,
-				{ id: Date.now(), title: this.state.newTaskItem, isDone: false },
-			],
-		}));
-		this.setState({ newTaskItem: '' });
+		const taskList = tasks.filter((task) => task.id !== key);
+		setTasks(taskList);
 	};
-	render() {
-		return (
-			<form className='wrapper'>
-				<Header
-					onChangeTask={this.onChangeTask}
-					onAddTask={this.onAddTask}
-					newTaskItem={this.state.newTaskItem}
-				/>
-				<TaskList
-					tasks={this.state.tasks}
-					onRemoveTask={this.onRemoveTask}
-					onCorrectTask={this.onCorrectTask}
-				/>
-				<Footer />
-			</form>
-		);
-	}
-}
+	const onRemoveTasks = (key, event) => {
+		event.preventDefault();
+		const taskList = tasks.filter((task) => task.id !== key);
+		setTasks(taskList);
+	};
+
+	const onAddTask = (event) => {
+		event.preventDefault();
+		if (newTaskItem !== '') {
+			setTasks([
+				{ id: Date.now(), title: newTaskItem, isDone: false },
+				...tasks,
+			]);
+			setNewTaskItem('');
+		}
+	};
+
+	return (
+		<form className='wrapper'>
+			<Header
+				onChangeTask={onChangeTask}
+				onAddTask={onAddTask}
+				newTaskItem={newTaskItem}
+			/>
+			<TaskList tasks={tasks} onRemoveTask={onRemoveTask} />
+			<Footer onRemoveTasks={onRemoveTasks} />
+		</form>
+	);
+};
 
 export default App;

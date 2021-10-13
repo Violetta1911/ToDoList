@@ -32,3 +32,28 @@ label {
 	font-size: 24px;
 	line-height: 20px;
 }
+.taskTitle {
+	width: 100%;
+	border: none;
+	color: rgb(14, 44, 216);
+	margin-left: 10px;
+	font-size: 24px;
+	font-style: italic;
+	outline: none;
+	&::placeholder {
+		color: rgb(14, 44, 216);
+		font-size: 24px;
+		font-style: italic;
+	}
+}
+
+.taskTitleCross {
+	width: 100%;
+	border: none;
+	color: rgb(14, 44, 216);
+	margin-left: 10px;
+	font-size: 24px;
+	font-style: italic;
+	text-decoration: line-through;
+	outline: none;
+}
