@@ -9,7 +9,7 @@ class Header extends React.Component {
 			<div>
 				<Title />
 				<TaskCreation
-					onChangeTask={this.props.onChangeTask}
+					onCreateTask={this.props.onCreateTask}
 					onAddTask={this.props.onAddTask}
 					newTaskItem={this.props.newTaskItem}
 				/>

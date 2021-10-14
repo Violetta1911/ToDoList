@@ -18,14 +18,15 @@ const TaskItem = (props) => {
 		<li className='task'>
 			<label className='check-box'>
 				<input type='checkbox' className='check' onChange={onChecked} />
+				<span className={taskTitle}> {props.task}</span>
 			</label>
 
-			<input
+			{/* <input
 				type='text'
 				id='newtask'
-				className={taskTitle}
+				
 				value={props.task}
-			/>
+			/> */}
 
 			<div className='actions'>
 				<Button className='icon-pencil' onClick={props.onChangeTask}>

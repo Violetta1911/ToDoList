@@ -8,9 +8,10 @@ const App = () => {
 	const [tasks, setTasks] = useState([]);
 	const [newTaskItem, setNewTaskItem] = useState('');
 
-	const onChangeTask = (event) => {
+	const onCreateTask = (event) => {
 		setNewTaskItem(event.target.value);
 	};
+
 	function onCheckedTask(key) {
 		const checkedTasks = tasks.map((item) => {
 			if (item.id === key) {
@@ -29,8 +30,17 @@ const App = () => {
 				return item;
 			}
 		});
+
 		setTasks(checkedTasks);
 	}
+
+	const onChangeTask = (event, key) => {
+		event.preventDefault();
+		const taskList = tasks.map((task) =>
+			task.id === key ? console.log('yes') : console.log('no'),
+		);
+		setTasks(taskList);
+	};
 
 	const onRemoveTask = (key, event) => {
 		event.preventDefault();
@@ -40,6 +50,7 @@ const App = () => {
 	const onRemoveTasks = (event) => {
 		event.preventDefault();
 		const taskList = tasks.filter((task) => task.isDone !== true);
+		console.log(taskList);
 		setTasks(taskList);
 	};
 
@@ -57,7 +68,7 @@ const App = () => {
 	return (
 		<form className='wrapper'>
 			<Header
-				onChangeTask={onChangeTask}
+				onCreateTask={onCreateTask}
 				onAddTask={onAddTask}
 				newTaskItem={newTaskItem}
 			/>
