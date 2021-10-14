@@ -5,9 +5,10 @@ import TaskItem from '../TaskItem/TaskItem';
 const TaskList = ({
 	tasks,
 	onRemoveTask,
-	onCheckedTask,
+	onToggleTask,
 	onChangeTask,
-	onNotCheckedTask,
+
+	changeBtn,
 }) => {
 	return (
 		<ul className='task-box'>
@@ -15,16 +16,13 @@ const TaskList = ({
 				return (
 					<TaskItem
 						key={key}
-						index={key}
-						task={task.title}
-						onRemoveTask={(event) => onRemoveTask(task.id, event)}
-						onChangeTask={(event) => onChangeTask(task.id, event)}
-						onCheckedTask={() => {
-							onCheckedTask(task.id);
+						task={task}
+						onRemoveTask={(event) => onRemoveTask(event, task.id)}
+						onChangeTask={(event) => onChangeTask(event, task.id)}
+						onToggleTask={() => {
+							onToggleTask(task.id);
 						}}
-						onNotCheckedTask={() => {
-							onNotCheckedTask(task.id);
-						}}
+						changeBtn={changeBtn}
 					/>
 				);
 			})}
