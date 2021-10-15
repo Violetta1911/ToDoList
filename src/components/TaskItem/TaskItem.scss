@@ -57,3 +57,17 @@ label {
 	text-decoration: line-through;
 	outline: none;
 }
+.task__change {
+	width: 80%;
+	border: none;
+	color: rgb(14, 44, 216);
+	margin-left: 10px;
+	font-size: 24px;
+	font-style: italic;
+	outline: none;
+	&::placeholder {
+		color: rgb(98, 101, 104);
+		font-size: 24px;
+		font-style: italic;
+	}
+}
