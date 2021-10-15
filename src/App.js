@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 const App = () => {
 	const [tasks, setTasks] = useState([]);
 	const [taskTitle, setTaskTitle] = useState('');
+	const [correctedTitle, setCorrectedTitle] = useState('');
 
 	const onInputTask = (event) => {
 		setTaskTitle(event.target.value);
@@ -21,12 +22,18 @@ const App = () => {
 
 	const onChangeTask = (event, key) => {
 		event.preventDefault();
-
 		const taskList = tasks.map((task) =>
-			task.id === key ? { ...task, isChange: !task.isChange } : task,
+			task.id === key && !task.isChange
+				? { ...task, isChange: !task.isChange }
+				: task.id === key && task.isChange
+				? { ...task, isChange: !task.isChange, title: correctedTitle }
+				: task,
 		);
-
 		setTasks(taskList);
+	};
+	const onChangeTitle = (event) => {
+		event.preventDefault();
+		setCorrectedTitle(event.target.value);
 	};
 
 	const onRemoveTask = (event, key) => {
@@ -62,6 +69,7 @@ const App = () => {
 				tasks={tasks}
 				onToggleTask={onToggleTask}
 				onChangeTask={onChangeTask}
+				onChangeTitle={onChangeTitle}
 				onRemoveTask={onRemoveTask}
 			/>
 			<Footer onRemoveTasks={onRemoveTasks} />

@@ -17,6 +17,7 @@ const TaskItem = (props) => {
 					<input
 						type='text'
 						className='task__change'
+						onChange={props.onChangeTitle}
 						placeholder={props.task.title}
 					/>
 				) : (

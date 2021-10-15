@@ -7,7 +7,7 @@ const TaskList = ({
 	onRemoveTask,
 	onToggleTask,
 	onChangeTask,
-
+	onChangeTitle,
 	changeBtn,
 }) => {
 	return (
@@ -19,6 +19,7 @@ const TaskList = ({
 						task={task}
 						onRemoveTask={(event) => onRemoveTask(event, task.id)}
 						onChangeTask={(event) => onChangeTask(event, task.id)}
+						onChangeTitle={(event) => onChangeTitle(event)}
 						onToggleTask={() => {
 							onToggleTask(task.id);
 						}}
