@@ -13,27 +13,39 @@ const App = () => {
 		setTaskTitle(event.target.value);
 	};
 
-	function onToggleTask(key) {
+	const onAddTask = (event) => {
+		event.preventDefault();
+		if (!taskTitle) return;
+		setTasks([
+			{ id: Date.now(), title: taskTitle, isDone: false, isChange: false },
+			...tasks,
+		]);
+		setTaskTitle('');
+	};
+
+	const onChangeTitle = (event) => {
+		event.preventDefault();
+		setCorrectedTitle(event.target.value);
+	};
+
+	const onToggleTask = (key) => {
 		const checkedTasks = tasks.map((task) =>
 			task.id === key ? { ...task, isDone: !task.isDone } : task,
 		);
 		setTasks(checkedTasks);
-	}
+	};
 
 	const onChangeTask = (event, key) => {
 		event.preventDefault();
-		const taskList = tasks.map((task) =>
-			task.id === key && !task.isChange
+		const taskList = tasks.map((task) => {
+			return task.id === key && !task.isChange
 				? { ...task, isChange: !task.isChange }
 				: task.id === key && task.isChange
 				? { ...task, isChange: !task.isChange, title: correctedTitle }
-				: task,
-		);
+				: task;
+		});
+
 		setTasks(taskList);
-	};
-	const onChangeTitle = (event) => {
-		event.preventDefault();
-		setCorrectedTitle(event.target.value);
 	};
 
 	const onRemoveTask = (event, key) => {
@@ -44,18 +56,7 @@ const App = () => {
 	const onRemoveTasks = (event) => {
 		event.preventDefault();
 		const taskList = tasks.filter((task) => !task.isDone);
-		console.log(taskList);
 		setTasks(taskList);
-	};
-
-	const onAddTask = (event) => {
-		event.preventDefault();
-		if (!taskTitle) return;
-		setTasks([
-			{ id: Date.now(), title: taskTitle, isDone: false, isChange: false },
-			...tasks,
-		]);
-		setTaskTitle('');
 	};
 
 	return (

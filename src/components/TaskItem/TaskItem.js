@@ -28,7 +28,11 @@ const TaskItem = (props) => {
 			</label>
 			<div className='actions'>
 				<Button className='icon-pencil' onClick={props.onChangeTask}>
-					{props.task.isChange ? <IconConfirm /> : <IconPencil />}
+					{props.task.isChange && !props.task.isDone ? (
+						<IconConfirm />
+					) : !props.task.isChange && props.task.isDone ? null : (
+						<IconPencil />
+					)}
 				</Button>
 				<Button className='icon-close' onClick={props.onRemoveTask}>
 					<IconClose />
