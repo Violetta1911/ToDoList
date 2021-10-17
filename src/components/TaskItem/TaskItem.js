@@ -11,14 +11,15 @@ const TaskItem = (props) => {
 				<input
 					type='checkbox'
 					className='check'
+					// {props.task.isChanging ? disabled : null}
 					onChange={props.onToggleTask}
 				/>
-				{props.task.isChange ? (
+				{props.task.isChanging ? (
 					<input
 						type='text'
 						className='task__change'
 						onChange={props.onChangeTitle}
-						placeholder={props.task.title}
+						value={props.task.title}
 					/>
 				) : (
 					<span className={props.task.isDone ? 'taskTitleCross' : 'taskTitle'}>
@@ -28,11 +29,7 @@ const TaskItem = (props) => {
 			</label>
 			<div className='actions'>
 				<Button className='icon-pencil' onClick={props.onChangeTask}>
-					{props.task.isChange && !props.task.isDone ? (
-						<IconConfirm />
-					) : !props.task.isChange && props.task.isDone ? null : (
-						<IconPencil />
-					)}
+					{props.task.isChanging ? <IconConfirm /> : <IconPencil />}
 				</Button>
 				<Button className='icon-close' onClick={props.onRemoveTask}>
 					<IconClose />

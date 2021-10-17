@@ -12,14 +12,14 @@ const TaskList = ({
 }) => {
 	return (
 		<ul className='task-box'>
-			{tasks.map((task, key) => {
+			{tasks.map((task) => {
 				return (
 					<TaskItem
-						key={key}
+						key={task.id}
 						task={task}
-						onRemoveTask={(event) => onRemoveTask(event, task.id)}
-						onChangeTask={(event) => onChangeTask(event, task.id)}
-						onChangeTitle={(event) => onChangeTitle(event)}
+						onRemoveTask={() => onRemoveTask(task.id)}
+						onChangeTask={() => onChangeTask(task.id)}
+						onChangeTitle={(event) => onChangeTitle(event, task.id)}
 						onToggleTask={() => {
 							onToggleTask(task.id);
 						}}

@@ -7,25 +7,25 @@ import Footer from './components/Footer/Footer';
 const App = () => {
 	const [tasks, setTasks] = useState([]);
 	const [taskTitle, setTaskTitle] = useState('');
-	const [correctedTitle, setCorrectedTitle] = useState('');
 
 	const onInputTask = (event) => {
 		setTaskTitle(event.target.value);
 	};
 
-	const onAddTask = (event) => {
-		event.preventDefault();
+	const onAddTask = () => {
 		if (!taskTitle) return;
 		setTasks([
-			{ id: Date.now(), title: taskTitle, isDone: false, isChange: false },
+			{ id: Date.now(), title: taskTitle, isDone: false, isChanging: false },
 			...tasks,
 		]);
 		setTaskTitle('');
 	};
 
-	const onChangeTitle = (event) => {
-		event.preventDefault();
-		setCorrectedTitle(event.target.value);
+	const onChangeTitle = (event, key) => {
+		const correctedTasks = tasks.map((task) =>
+			task.id === key ? { ...task, title: event.target.value } : task,
+		);
+		setTasks(correctedTasks);
 	};
 
 	const onToggleTask = (key) => {
@@ -35,32 +35,36 @@ const App = () => {
 		setTasks(checkedTasks);
 	};
 
-	const onChangeTask = (event, key) => {
-		event.preventDefault();
-		const taskList = tasks.map((task) => {
-			return task.id === key && !task.isChange
-				? { ...task, isChange: !task.isChange }
-				: task.id === key && task.isChange
-				? { ...task, isChange: !task.isChange, title: correctedTitle }
-				: task;
-		});
+	const onChangeTask = (key) => {
+		const taskList = tasks.map((task) =>
+			task.id === key && task.isDone
+				? {
+						...task,
+						isChanging: !task.isChanging,
+						isDone: !task.isNDone,
+				  }
+				: task.id === key && !task.isDone
+				? {
+						...task,
+						isChanging: !task.isChanging,
+				  }
+				: task,
+		);
 
 		setTasks(taskList);
 	};
 
-	const onRemoveTask = (event, key) => {
-		event.preventDefault();
+	const onRemoveTask = (key) => {
 		const taskList = tasks.filter((task) => task.id !== key);
 		setTasks(taskList);
 	};
-	const onRemoveTasks = (event) => {
-		event.preventDefault();
+	const onRemoveTasks = () => {
 		const taskList = tasks.filter((task) => !task.isDone);
 		setTasks(taskList);
 	};
 
 	return (
-		<form className='wrapper'>
+		<form className='wrapper' onSubmit={(e) => e.preventDefault()}>
 			<Header
 				onInputTask={onInputTask}
 				onAddTask={onAddTask}
