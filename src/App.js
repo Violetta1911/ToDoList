@@ -33,8 +33,12 @@ const App = () => {
 		const checkedTasks = tasks.map((task) =>
 			task.id === key ? { ...task, isDone: !task.isDone } : task,
 		);
+
+		const completedTask = checkedTasks.filter((task) => task.isDone);
+
 		setTasks(checkedTasks);
-		setIsChecked(isChecked + 1);
+
+		setIsChecked(completedTask.length);
 	};
 
 	const onConfirmChanging = (key) => {
