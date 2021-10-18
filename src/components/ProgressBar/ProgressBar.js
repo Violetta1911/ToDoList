@@ -1,11 +1,15 @@
 import React from 'react';
 import './ProgressBar.scss';
 
-const ProgressBar = () => {
+const ProgressBar = ({ totalTasks, isChecked }) => {
+	const rate = (isChecked / totalTasks) * 100;
+	console.log(rate);
 	return (
 		<div className='progress'>
-			<div className='bar'>
-				<span>1 of 2 tasks done</span>
+			<div className='bar' style={{ width: `${rate}%` }}>
+				<span>
+					{isChecked} of {totalTasks} tasks done
+				</span>
 			</div>
 		</div>
 	);

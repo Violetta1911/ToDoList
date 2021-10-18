@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 const App = () => {
 	const [tasks, setTasks] = useState([]);
 	const [taskTitle, setTaskTitle] = useState('');
+	const [isChecked, setIsChecked] = useState(0);
 
 	const onInputTask = (event) => {
 		setTaskTitle(event.target.value);
@@ -33,6 +34,7 @@ const App = () => {
 			task.id === key ? { ...task, isDone: !task.isDone } : task,
 		);
 		setTasks(checkedTasks);
+		setIsChecked(isChecked + 1);
 	};
 
 	const onConfirmChanging = (key) => {
@@ -61,6 +63,7 @@ const App = () => {
 	const onRemoveTasks = () => {
 		const taskList = tasks.filter((task) => !task.isDone);
 		setTasks(taskList);
+		setIsChecked(0);
 	};
 
 	return (
@@ -77,7 +80,11 @@ const App = () => {
 				onChangeTitle={onChangeTitle}
 				onRemoveTask={onRemoveTask}
 			/>
-			<Footer onRemoveTasks={onRemoveTasks} />
+			<Footer
+				onRemoveTasks={onRemoveTasks}
+				tasks={tasks}
+				isChecked={isChecked}
+			/>
 		</form>
 	);
 };
