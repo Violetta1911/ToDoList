@@ -11,7 +11,7 @@ const TaskItem = (props) => {
 				<input
 					type='checkbox'
 					className='check'
-					// {props.task.isChanging ? disabled : null}
+					checked={props.task.isDone ? true : false}
 					onChange={props.onToggleTask}
 				/>
 				{props.task.isChanging ? (
@@ -28,7 +28,7 @@ const TaskItem = (props) => {
 				)}
 			</label>
 			<div className='actions'>
-				<Button className='icon-pencil' onClick={props.onChangeTask}>
+				<Button className='icon-pencil' onClick={props.onConfirmChanging}>
 					{props.task.isChanging ? <IconConfirm /> : <IconPencil />}
 				</Button>
 				<Button className='icon-close' onClick={props.onRemoveTask}>

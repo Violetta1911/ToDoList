@@ -35,15 +35,15 @@ const App = () => {
 		setTasks(checkedTasks);
 	};
 
-	const onChangeTask = (key) => {
+	const onConfirmChanging = (key) => {
 		const taskList = tasks.map((task) =>
 			task.id === key && task.isDone
 				? {
 						...task,
 						isChanging: !task.isChanging,
-						isDone: !task.isNDone,
+						isDone: !task.isDone,
 				  }
-				: task.id === key && !task.isDone
+				: task.id === key && !task.isDone && task.title
 				? {
 						...task,
 						isChanging: !task.isChanging,
@@ -73,7 +73,7 @@ const App = () => {
 			<TaskList
 				tasks={tasks}
 				onToggleTask={onToggleTask}
-				onChangeTask={onChangeTask}
+				onConfirmChanging={onConfirmChanging}
 				onChangeTitle={onChangeTitle}
 				onRemoveTask={onRemoveTask}
 			/>

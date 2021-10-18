@@ -6,7 +6,7 @@ const TaskList = ({
 	tasks,
 	onRemoveTask,
 	onToggleTask,
-	onChangeTask,
+	onConfirmChanging,
 	onChangeTitle,
 	changeBtn,
 }) => {
@@ -18,7 +18,7 @@ const TaskList = ({
 						key={task.id}
 						task={task}
 						onRemoveTask={() => onRemoveTask(task.id)}
-						onChangeTask={() => onChangeTask(task.id)}
+						onConfirmChanging={() => onConfirmChanging(task.id)}
 						onChangeTitle={(event) => onChangeTitle(event, task.id)}
 						onToggleTask={() => {
 							onToggleTask(task.id);
