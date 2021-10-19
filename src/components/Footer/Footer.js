@@ -2,15 +2,18 @@ import React from 'react';
 import './Footer.scss';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import Button from '../Button/Button';
-import { ReactComponent as IconClose } from '../Button/close.svg';
+import { ReactComponent as IconClose } from '../Button/Icons/close.svg';
 
-const Footer = ({ onRemoveTasks, tasks, isChecked }) => {
+const Footer = ({ onRemoveTasks, tasks, completedCount }) => {
 	return (
-		<footer className='state'>
-			{tasks.length >= 1 ? (
-				<ProgressBar totalTasks={tasks.length} isChecked={isChecked} />
+		<footer className='footer'>
+			{tasks.length ? (
+				<ProgressBar
+					totalTasks={tasks.length}
+					completedCount={completedCount}
+				/>
 			) : null}
-			{isChecked ? (
+			{completedCount ? (
 				<Button
 					className='delete-task'
 					onClick={(event) => onRemoveTasks(event)}>

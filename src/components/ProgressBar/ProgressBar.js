@@ -1,14 +1,13 @@
 import React from 'react';
 import './ProgressBar.scss';
 
-const ProgressBar = ({ totalTasks, isChecked }) => {
-	const rate = (isChecked / totalTasks) * 100;
-	console.log(rate);
+const ProgressBar = ({ totalTasks, completedCount }) => {
+	const rate = (completedCount / totalTasks) * 100;
 	return (
 		<div className='progress'>
 			<div className='bar' style={{ width: `${rate}%` }}>
 				<span>
-					{isChecked} of {totalTasks} tasks done
+					{completedCount} of {totalTasks} tasks done
 				</span>
 			</div>
 		</div>

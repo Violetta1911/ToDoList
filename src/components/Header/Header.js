@@ -6,11 +6,12 @@ import './Header.scss';
 const Header = ({ onInputTask, onAddTask, taskTitle }) => {
 	return (
 		<div>
-			<Title />
+			<Title title='ToDoList' />
 			<TaskCreation
 				onInputTask={onInputTask}
 				onAddTask={onAddTask}
 				taskTitle={taskTitle}
+				placeholder='add new task'
 			/>
 		</div>
 	);

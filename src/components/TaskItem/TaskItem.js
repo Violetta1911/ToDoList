@@ -1,37 +1,43 @@
 import Button from '../Button/Button';
-import { ReactComponent as IconPencil } from '../Button/pencil-fill.svg';
-import { ReactComponent as IconClose } from '../Button/close.svg';
-import { ReactComponent as IconConfirm } from '../Button/confirm.svg';
+import { ReactComponent as IconPencil } from '../Button/Icons/pencil-fill.svg';
+import { ReactComponent as IconClose } from '../Button/Icons/close.svg';
+import { ReactComponent as IconConfirm } from '../Button/Icons/confirm.svg';
 import './TaskItem.scss';
 
-const TaskItem = (props) => {
+const TaskItem = ({
+	task,
+	onToggleTask,
+	onChangeTitle,
+	onConfirmChanging,
+	onRemoveTask,
+}) => {
 	return (
 		<li className='task'>
 			<label className='check-box'>
 				<input
 					type='checkbox'
 					className='check'
-					checked={props.task.isDone ? true : false}
-					onChange={props.onToggleTask}
+					checked={task.isDone ? true : false}
+					onChange={onToggleTask}
 				/>
-				{props.task.isChanging ? (
+				{task.isChanging ? (
 					<input
 						type='text'
 						className='task__change'
-						onChange={props.onChangeTitle}
-						value={props.task.title}
+						onChange={onChangeTitle}
+						value={task.title}
 					/>
 				) : (
-					<span className={props.task.isDone ? 'taskTitleCross' : 'taskTitle'}>
-						{props.task.title}
+					<span className={task.isDone ? 'taskTitleCross' : 'taskTitle'}>
+						{task.title}
 					</span>
 				)}
 			</label>
 			<div className='actions'>
-				<Button className='icon-pencil' onClick={props.onConfirmChanging}>
-					{props.task.isChanging ? <IconConfirm /> : <IconPencil />}
+				<Button className='icon-pencil' onClick={onConfirmChanging}>
+					{task.isChanging ? <IconConfirm /> : <IconPencil />}
 				</Button>
-				<Button className='icon-close' onClick={props.onRemoveTask}>
+				<Button className='icon-close' onClick={onRemoveTask}>
 					<IconClose />
 				</Button>
 			</div>

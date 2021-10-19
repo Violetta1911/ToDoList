@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';
 const App = () => {
 	const [tasks, setTasks] = useState([]);
 	const [taskTitle, setTaskTitle] = useState('');
-	const [isChecked, setIsChecked] = useState(0);
+	const [completedCount, setCompletedCount] = useState(0);
 
 	const onInputTask = (event) => {
 		setTaskTitle(event.target.value);
@@ -33,23 +33,13 @@ const App = () => {
 		const checkedTasks = tasks.map((task) =>
 			task.id === key ? { ...task, isDone: !task.isDone } : task,
 		);
-
-		const completedTask = checkedTasks.filter((task) => task.isDone);
-
 		setTasks(checkedTasks);
-
-		setIsChecked(completedTask.length);
+		calcCompletedTasks(checkedTasks);
 	};
 
 	const onConfirmChanging = (key) => {
 		const taskList = tasks.map((task) =>
-			task.id === key && task.isDone
-				? {
-						...task,
-						isChanging: !task.isChanging,
-						isDone: !task.isDone,
-				  }
-				: task.id === key && !task.isDone && task.title
+			task.id === key
 				? {
 						...task,
 						isChanging: !task.isChanging,
@@ -62,12 +52,17 @@ const App = () => {
 
 	const onRemoveTask = (key) => {
 		const taskList = tasks.filter((task) => task.id !== key);
+		calcCompletedTasks(taskList);
 		setTasks(taskList);
 	};
 	const onRemoveTasks = () => {
 		const taskList = tasks.filter((task) => !task.isDone);
 		setTasks(taskList);
-		setIsChecked(0);
+		setCompletedCount(0);
+	};
+	const calcCompletedTasks = (tasks) => {
+		const completedTasks = tasks.filter((task) => task.isDone);
+		setCompletedCount(completedTasks.length);
 	};
 
 	return (
@@ -87,7 +82,7 @@ const App = () => {
 			<Footer
 				onRemoveTasks={onRemoveTasks}
 				tasks={tasks}
-				isChecked={isChecked}
+				completedCount={completedCount}
 			/>
 		</form>
 	);

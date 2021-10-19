@@ -1,20 +1,21 @@
 import React from 'react';
 import './TaskCreation.scss';
+import Button from '../Button/Button';
 
-const TaskCreation = (props) => {
+const TaskCreation = ({ onInputTask, taskTitle, onAddTask, placeholder }) => {
 	return (
 		<div className='add-task-box'>
 			<input
 				type='text'
 				name='task'
-				id='task'
-				placeholder='add new task'
-				onChange={props.onInputTask}
-				value={props.taskTitle}
+				className='task-title'
+				placeholder={placeholder}
+				onChange={onInputTask}
+				value={taskTitle}
 			/>
-			<button className='add-task' onClick={props.onAddTask}>
+			<Button className='add-task' onClick={onAddTask}>
 				+
-			</button>
+			</Button>
 		</div>
 	);
 };
